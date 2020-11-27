@@ -61,6 +61,19 @@ export const constantRoutes = [
  */
 export const adminRoutes = [
   {
+    path: '/news',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'News',
+        component: () => import('@/views/news/index'),
+        meta: { title: '考试新闻管理', icon: 'form' }
+      }
+    ]
+  },
+
+  {
     path: '/permission',
     component: Layout,
     children: [
@@ -97,10 +110,7 @@ export const adminRoutes = [
         meta: { title: '日志管理', icon: 'form' }
       }
     ]
-  },
-
-  // 404 page must be placed at the end
-  // { path: '*', redirect: '/404', hidden: true }
+  }
 ]
 
 /**
@@ -165,12 +175,10 @@ export const eduAdminRoutes = [
         meta: { title: '发布考试信息', icon: 'form' }
       }
     ]
-  },
-
-  // 404 page must be placed at the end !!!
-  // 
+  }
 ]
 
+// 404 page must be placed at the end !!!
 export const asyncRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]

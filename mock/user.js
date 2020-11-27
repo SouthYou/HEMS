@@ -12,12 +12,10 @@ const users = {
   'admin-token': {
     roles: [
       {
-        "roleName": "ROLE_ADMIN"
+        "roleName": "ROLE_SYSTEM_ADMIN"
       }
     ],
-    detail: {
-      "avatar": 'http://qjqawp6m8.hn-bkt.clouddn.com/default.png'
-    },
+    avatar: 'http://qjqawp6m8.hn-bkt.clouddn.com/default.png',
     accountName: '系统管理员'
   },
   'eduAdmin-token': {
@@ -26,9 +24,7 @@ const users = {
         "roleName": "ROLE_EDU_ADMIN"
       }
     ],
-    detail: {
-      "avatar": 'http://qjqawp6m8.hn-bkt.clouddn.com/default.png'
-    },
+    avatar: 'http://qjqawp6m8.hn-bkt.clouddn.com/default.png',
     accountName: '教务'
   }
 }

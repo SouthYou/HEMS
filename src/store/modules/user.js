@@ -59,7 +59,7 @@ const actions = {
 
         const { roles } = data
         const name = data.accountName
-        const avatar = data.detail.avatar
+        const avatar = data.avatar
 
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {

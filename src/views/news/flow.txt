@@ -1,0 +1,13 @@
+key| value
+---+------------
+uid  uid+原名
+
+-上传 ( url = /news/images  method = post )
+ uid+原名, 文件 ==> 存
+              <== uid+原名
+
+-删除 ( url = /news/images  method = delete )
+ uid+原名 ==> 删
+
+-提交 ( url = /news  method = post )
+ uid+原名存入数组 ==> 提交七牛云，删缓存

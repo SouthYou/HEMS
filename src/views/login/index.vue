@@ -2,7 +2,7 @@
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
 
-      <h3 class="title">考试管理系统</h3>
+      <h3 class="title">Hikari 考试管理系统</h3>
 
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
