@@ -11,7 +11,7 @@
 | axios | 前端HTTP框架 |
 | js-cookie | cookie管理工具 |
 
-目前版本为 `v4.0+` 基于 `vue-cli` 进行构建`。
+目前版本为 `v1.0.0` 基于 `vue-cli` 进行构建`。
 
 ## 构建设置
 
