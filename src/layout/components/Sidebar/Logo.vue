@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      title: '考试管理系统',
+      title: 'Hikari 考试管理系统',
       logo: 'https://cdn.jsdelivr.net/gh/Youjianan/cdn@1.6/favicon/ems.png'
     }
   }

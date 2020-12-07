@@ -1,10 +1,10 @@
 Array<uid+原名>
 
--上传 ( url = /news/images  method = post )
+-上传 ( url = /news/image  method = post )
  uid+原名, 文件 ==> 存
               <== uid+原名
 
--删除 ( url = /news/images  method = delete )
+-删除 ( url = /news/image  method = delete )
  uid+原名 ==> 删
          <== uid+原名
 

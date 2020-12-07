@@ -39,11 +39,16 @@
 // dropdown
 .el-dropdown-menu {
   a {
-    display: block
+    display: block;
   }
 }
 
 // to fix el-date-picker css style
 .el-range-separator {
   box-sizing: content-box;
+}
+
+// el-table-column内容过长时不显示tooltip
+.el-tooltip__popper {
+  display: none;
 }

@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '考试管理系统',
+  title: 'Hikari 考试管理系统',
 
   /**
    * @type {boolean} true | false

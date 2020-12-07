@@ -2,6 +2,43 @@ const Mock = require('mockjs')
 
 module.exports = [
   {
+    url: '/news/image',
+    type: 'post',
+    response: config => {
+      return {
+        code: 20000,
+        data: Mock.mock({
+          filename: '1606484943474_58315944_p0.jpg'
+        })
+      }
+    }
+  },
+
+  {
+    url: '/news/image',
+    type: 'delete',
+    response: config => {
+      return {
+        code: 20000,
+        data: Mock.mock({
+          filename: '1606484943474_58315944_p0.jpg'
+        })
+      }
+    }
+  },
+
+  {
+    url: '/news/images',
+    type: 'delete',
+    response: config => {
+      return {
+        code: 20000,
+        data: 'mock success'
+      }
+    }
+  },
+
+  {
     url: '/news',
     type: 'get',
     response: config => {
@@ -75,43 +112,6 @@ module.exports = [
 
   {
     url: '/news',
-    type: 'delete',
-    response: config => {
-      return {
-        code: 20000,
-        data: 'mock success'
-      }
-    }
-  },
-  
-  {
-    url: '/news/image',
-    type: 'post',
-    response: config => {
-      return {
-        code: 20000,
-        data: Mock.mock({
-          filename: '1606484943474_58315944_p0.jpg'
-        })
-      }
-    }
-  },
-
-  {
-    url: '/news/image',
-    type: 'delete',
-    response: config => {
-      return {
-        code: 20000,
-        data: Mock.mock({
-          filename: '1606484943474_58315944_p0.jpg'
-        })
-      }
-    }
-  },
-
-  {
-    url: '/news/images',
     type: 'delete',
     response: config => {
       return {

@@ -1,4 +1,3 @@
-
 const tokens = {
   admin: {
     token: 'admin-token'
@@ -30,7 +29,6 @@ const users = {
 }
 
 module.exports = [
-  // user login
   {
     url: '/user/login',
     type: 'post',
@@ -53,7 +51,6 @@ module.exports = [
     }
   },
 
-  // get user info
   {
     url: '/user/info\.*',
     type: 'get',
@@ -76,7 +73,6 @@ module.exports = [
     }
   },
 
-  // user logout
   {
     url: '/user/logout',
     type: 'post',

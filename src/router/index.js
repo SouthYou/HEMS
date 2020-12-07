@@ -63,53 +63,34 @@ export const adminRoutes = [
   {
     path: '/news',
     component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'News',
-        component: () => import('@/views/news/index'),
-        meta: { title: '考试新闻管理', icon: 'form' }
-      }
-    ]
+    children: [{
+      path: 'index',
+      name: 'News',
+      component: () => import('@/views/admin/news/index'),
+      meta: { title: '考试新闻管理', icon: 'el-icon-news' }
+    }]
   },
 
   {
-    path: '/permission',
+    path: '/exam',
     component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Permission',
-        component: () => import('@/views/permission/index'),
-        meta: { title: '角色权限', icon: 'form' }
-      }
-    ]
+    children: [{
+      path: 'index',
+      name: 'Exam',
+      component: () => import('@/views/admin/exam/index'),
+      meta: { title: '考试信息设置', icon: 'el-icon-setting' }
+    }]
   },
 
   {
-    path: '/system-msg',
+    path: '/log',
     component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'SystemMessage',
-        component: () => import('@/views/sysmsg/index'),
-        meta: { title: '发布系统信息', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/logging',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Logging',
-        component: () => import('@/views/logging/index'),
-        meta: { title: '日志管理', icon: 'form' }
-      }
-    ]
+    children: [{
+      path: 'index',
+      name: 'Log',
+      component: () => import('@/views/admin/logging/index'),
+      meta: { title: '日志管理', icon: 'el-icon-notebook-2' }
+    }]
   }
 ]
 
@@ -119,62 +100,25 @@ export const adminRoutes = [
  */
 export const eduAdminRoutes = [
   {
+    path: '/status',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'Status',
+      component: () => import('@/views/edu/status/index'),
+      meta: { title: '考试状态管理', icon: 'el-icon-s-operation' }
+    }]
+  },
+
+  {
     path: '/enroll',
     component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Enroll',
-        component: () => import('@/views/enroll/index'),
-        meta: { title: '报名管理', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/exam',
-    component: Layout,
-    meta: { title: '考试管理', icon: 'form' },
-    children: [
-      {
-        path: 'site',
-        name: 'Site',
-        component: () => import('@/views/exam/site/index'),
-        meta: { title: '考点管理', icon: 'form' }
-      },
-      {
-        path: 'time',
-        name: 'Time',
-        component: () => import('@/views/exam/time/index'),
-        meta: { title: '场次管理', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/score',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Score',
-        component: () => import('@/views/score/index'),
-        meta: { title: '成绩管理', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/exam-msg',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'ExamMsg',
-        component: () => import('@/views/exammsg/index'),
-        meta: { title: '发布考试信息', icon: 'form' }
-      }
-    ]
+    children: [{
+      path: 'index',
+      name: 'Enroll',
+      component: () => import('@/views/edu/enroll/index'),
+      meta: { title: '报考信息管理', icon: 'el-icon-s-order' }
+    }]
   }
 ]
 

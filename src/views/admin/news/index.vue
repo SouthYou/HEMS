@@ -213,8 +213,8 @@ export default {
     handleCancel() {
       this.formDialogVisible = false
       const filenameList = this.form.filenameList
-      const params = { filenameList }
-      api.delImages(params).then(res => {
+      const data = { filenameList }
+      api.delImages(data).then(res => {
         const { data } = res
         console.log(data)
         this.row = {}
@@ -278,6 +278,7 @@ export default {
           const { code, data } = res
           if (code !== 20000) {
             this.$message.error('删除失败')
+            console.error('error')
             return false
           }
           this.reload()
@@ -319,5 +320,4 @@ export default {
   text-overflow:ellipsis;
   white-space:nowrap;
 }
-
 </style>
