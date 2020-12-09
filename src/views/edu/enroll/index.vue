@@ -2,9 +2,9 @@
   <div class="app-container">
     <!-- 条件查询表单 -->
     <div class="form-container">
-      <el-form :inline="true" :model="form">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-select v-model="form.type" placeholder="查询类型" style="width:150px;">
+          <el-select v-model="searchForm.type" placeholder="查询类型" style="width:150px;">
             <el-option label="考生姓名" value="realName"></el-option>
             <el-option label="考试等级" value="level"></el-option>
             <el-option label="考试名称" value="examName"></el-option>
@@ -12,10 +12,10 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="form.key" placeholder="查询内容"></el-input>
+          <el-input v-model="searchForm.key" placeholder="查询内容"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" icon="el-icon-search" @click="onSubmit()">查询</el-button>
+          <el-button type="primary" icon="el-icon-search" @click="submitSearchForm()">查询</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -30,7 +30,8 @@
         <el-table-column prop="status" label="报名状态"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="danger" size="small" @click="checkFail(scope.row)">审核不通过</el-button>
+            <el-button type="primary" size="small" @click="clickModifyBtn(scope.row)">修改</el-button>
+            <el-button type="danger" size="small" @click="clickCheckFailBtn(scope.row)">审核不通过</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -45,6 +46,37 @@
         @current-change="pageNoChange">
       </el-pagination>
     </div>
+
+    <!-- 修改报考信息dialog -->
+    <div class="dialog">
+      <el-dialog title="修改报考信息" :visible.sync="dialogVisible" width="500px" :before-close="handleCancel">
+        <el-form :model="modifyForm" label-position="left" label-width="78px" ref="modifyForm">
+          <el-form-item label="姓名" prop="realName">
+            <el-input v-model="modifyForm.realName"></el-input>
+          </el-form-item>
+          <el-form-item label="性别" prop="gender">
+            <el-input v-model="modifyForm.gender"></el-input>
+          </el-form-item>
+          <el-form-item label="联系方式" prop="contact">
+            <el-input v-model="modifyForm.contact"></el-input>
+          </el-form-item>
+          <el-form-item label="邮箱" prop="email">
+            <el-input v-model="modifyForm.email"></el-input>
+          </el-form-item>
+          <el-form-item label="教育背景" prop="eduBack">
+            <el-input v-model="modifyForm.eduBack"></el-input>
+          </el-form-item>
+          <el-form-item label="家庭住址" prop="homeAddress">
+            <el-input v-model="modifyForm.homeAddress"></el-input>
+          </el-form-item>
+        </el-form>
+  
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="handleCancel()">取 消</el-button>
+          <el-button type="primary" @click="submitModifyForm()">提 交</el-button>
+        </span>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -56,7 +88,7 @@ export default {
   data() {
     return {
       // 查询条件
-      form: {
+      searchForm: {
         type: '',
         key: ''
       },
@@ -65,7 +97,18 @@ export default {
       showData: [],
       pageNo: 1,
       pageSize: 5,
-      total: 0
+      total: 0,
+      // 修改报考信息dialog
+      dialogVisible: false,
+      modifyForm: {
+        enrollId: '',
+        realName: '',
+        gender: '',
+        contact: '',
+        email: '',
+        eduBack: '',
+        homeAddress: ''
+      }
     }
   },
 
@@ -82,11 +125,15 @@ export default {
 
   methods: {
     /**
-     * @method 条件查询
+     * @method 提交条件查询表单
      */
-    onSubmit() {
+    submitSearchForm() {
       const pageSize = this.pageSize
-      const { type, key } = this.form
+      const { type, key } = this.searchForm
+      if (type === '' || key === '') {
+        this.$alert('表单信息未填写完整','提示')
+        return false
+      }
       const params = { pageSize, type, key }
       console.log(params)
       api.getEnroll(params).then(res => {
@@ -103,16 +150,65 @@ export default {
     },
 
     /**
-     * @method 审核不通过做的操作
+     * @method 点击修改按钮
      */
-    checkFail(row) {
-      const enrollId = row.enrollId
-      const data = { enrollId }
+    clickModifyBtn(row) {
+      this.modifyForm.enrollId = row.enrollId
+      this.modifyForm.realName = row.realName
+      this.modifyForm.gender = row.gender
+      this.modifyForm.contact = row.contact
+      this.modifyForm.email = row.email
+      this.modifyForm.eduBack = row.eduBack
+      this.modifyForm.homeAddress = row.homeAddress
+      this.dialogVisible = true
+    },
+
+    /**
+     * @method 取消修改
+     */
+    handleCancel() {
+      this.dialogVisible = false
+      this.$refs['modifyForm'].resetFields()
+    },
+
+    /**
+     * @method 确认修改
+     */
+    submitModifyForm() {
       this.$confirm('确认继续此操作?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
+        const data = this.modifyForm
+        console.log(data)
+        api.updateEnroll(data).then(res => {
+          const { code, data } = res
+          if (code !== 20000) {
+            this.$message.error('操作失败')
+            console.error('error')
+            return false
+          }
+          this.reload()
+          this.$message.success('操作成功')
+        })
+      }).catch(() => {
+        this.$message.info('取消操作')
+      })
+    },
+
+    /**
+     * @method 审核不通过做的操作
+     */
+    clickCheckFailBtn(row) {
+      this.$confirm('确认继续此操作?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        const enrollId = row.enrollId
+        const data = { enrollId }
+        console.log(data)
         api.updateStatus(data).then(res => {
           const { code, data } = res
           if (code !== 20000) {
