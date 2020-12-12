@@ -2,7 +2,7 @@ const Mock = require('mockjs')
 
 module.exports = [
   {
-    url: '/status',
+    url: '/exam/status',
     type: 'get',
     response: config => {
       return {
@@ -12,7 +12,7 @@ module.exports = [
             total: 6,
             tableData: [
               [{
-                examId: 'ex1001',
+                examNo: 'ex1001',
                 level: '初级',
                 examName: '程序员',
                 enrollStart: '2020-12-2 8:00',
@@ -21,7 +21,7 @@ module.exports = [
                 examEnd: '2020-12-8 9:30',
                 status: '待开考'
               }, {
-                examId: 'ex1001',
+                examNo: 'ex1001',
                 level: '初级',
                 examName: '程序员',
                 enrollStart: '2020-12-2 8:00',
@@ -30,7 +30,7 @@ module.exports = [
                 examEnd: '2020-12-8 9:30',
                 status: '阅卷中'
               }, {
-                examId: 'ex1001',
+                examNo: 'ex1001',
                 level: '初级',
                 examName: '程序员',
                 enrollStart: '2020-12-2 8:00',
@@ -39,7 +39,7 @@ module.exports = [
                 examEnd: '2020-12-8 9:30',
                 status: '阅卷中'
               }, {
-                examId: 'ex1001',
+                examNo: 'ex1001',
                 level: '初级',
                 examName: '程序员',
                 enrollStart: '2020-12-2 8:00',
@@ -48,7 +48,7 @@ module.exports = [
                 examEnd: '2020-12-8 9:30',
                 status: '阅卷中'
               }, {
-                examId: 'ex1001',
+                examNo: 'ex1001',
                 level: '初级',
                 examName: '程序员',
                 enrollStart: '2020-12-2 8:00',
@@ -59,7 +59,7 @@ module.exports = [
               }],
 
               [{
-                examId: 'ex1001',
+                examNo: 'ex1001',
                 level: '初级',
                 examName: '程序员',
                 enrollStart: '2020-12-2 8:00',
@@ -76,7 +76,7 @@ module.exports = [
   },
 
   {
-    url: '/status',
+    url: '/exam/status',
     type: 'patch',
     response: config => {
       return {

@@ -4,15 +4,39 @@
     <div class="form-container">
       <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-select v-model="searchForm.type" placeholder="查询类型" style="width:150px;">
+          <el-select v-model="searchForm.type" placeholder="选择查询类型" style="width:150px;">
             <el-option label="考生姓名" value="realName"></el-option>
             <el-option label="考试等级" value="level"></el-option>
             <el-option label="考试名称" value="examName"></el-option>
-            <el-option label="报考状态" value="status"></el-option>
+            <el-option label="报名状态" value="status"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="searchForm.key" placeholder="查询内容"></el-input>
+          <el-input v-if="searchForm.type==='realName'||searchForm.type==='examName'"
+            v-model="searchForm.key"
+            placeholder="输入查询内容"
+            style="width:150px;">
+          </el-input>
+          <el-select v-if="searchForm.type==='level'"
+            v-model="searchForm.key"
+            placeholder="选择查询内容"
+            style="width:150px;">
+            <el-option v-for="item in level_options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+          <el-select v-if="searchForm.type==='status'"
+            v-model="searchForm.key"
+            placeholder="选择查询内容"
+            style="width:150px;">
+            <el-option v-for="item in status_options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" icon="el-icon-search" @click="submitSearchForm()">查询</el-button>
@@ -92,6 +116,30 @@ export default {
         type: '',
         key: ''
       },
+      // 查询内容（下拉框）
+      level_options: [{
+        value: 1,
+        label: '初级'
+      }, {
+        value: 2,
+        label: '中级'
+      }, {
+        value: 3,
+        label: '高级'
+      }],
+      status_options: [{
+        value: -1,
+        label: '报名失败',
+      }, {
+        value: 0,
+        label: '待付款',
+      }, {
+        value: 1,
+        label: '报名成功',
+      }, {
+        value: 2,
+        label: '完成考试',
+      }],
       // 报考信息列表 (表格分页)
       tableData: [],
       showData: [],

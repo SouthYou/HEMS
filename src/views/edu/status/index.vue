@@ -78,7 +78,7 @@ export default {
       },
       // 编辑状态dialog
       dialogVisible: false,
-      examId: '',
+      examNo: '',
       status: undefined,
       // 考试状态列表 (表格分页)
       tableData: [],
@@ -102,20 +102,20 @@ export default {
 
   methods: {
     /**
-     * @method 展示dialog时获取examId
+     * @method 展示dialog时获取examNo
      */
     showDialog(row) {
       this.dialogVisible = true
-      this.examId = row.examId
+      this.examNo = row.examNo
       this.status = this.statusMap[row.status]
     },
 
     /**
-     * @method 关闭dialog时重置examId
+     * @method 关闭dialog时重置examNo
      */
     handleClose() {
       this.dialogVisible = false
-      this.examId = ''
+      this.examNo = ''
     },
 
     /**
@@ -123,9 +123,9 @@ export default {
      */
     onSubmit(row) {
       this.dialogVisible = false
-      const examId = this.examId
+      const examNo = this.examNo
       const status = this.status
-      const data = { examId, status }
+      const data = { examNo, status }
       console.log(data)
       api.updateStatus(data).then(res => {
         const { code, data } = res

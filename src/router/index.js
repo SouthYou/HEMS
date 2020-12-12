@@ -119,6 +119,17 @@ export const eduAdminRoutes = [
       component: () => import('@/views/edu/enroll/index'),
       meta: { title: '报考信息管理', icon: 'el-icon-s-order' }
     }]
+  },
+
+  {
+    path: '/apply',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'Apply',
+      component: () => import('@/views/edu/apply/index'),
+      meta: { title: '修改申请审核', icon: 'el-icon-s-check' }
+    }]
   }
 ]
 

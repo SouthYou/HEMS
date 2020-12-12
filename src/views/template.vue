@@ -5,11 +5,18 @@
 </template>
 
 <script>
+// import * as api from '@/api/edu/enroll'
+
 export default {
+  // inject: ['reload'],
   data() {
     return {
       
     }
+  },
+
+  created() {
+    
   },
 
   methods: {
