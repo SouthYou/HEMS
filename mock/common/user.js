@@ -14,7 +14,7 @@ const users = {
         "roleName": "ROLE_SYSTEM_ADMIN"
       }
     ],
-    avatar: 'http://qjqawp6m8.hn-bkt.clouddn.com/default.png',
+    avatar: 'http://qla6qhdly.hn-bkt.clouddn.com/default_admin_avatar.png',
     accountName: '系统管理员'
   },
   'eduAdmin-token': {
@@ -23,7 +23,7 @@ const users = {
         "roleName": "ROLE_EDU_ADMIN"
       }
     ],
-    avatar: 'http://qjqawp6m8.hn-bkt.clouddn.com/default.png',
+    avatar: 'http://qla6qhdly.hn-bkt.clouddn.com/default_admin_avatar.png',
     accountName: '教务'
   }
 }

@@ -100,6 +100,61 @@ export const adminRoutes = [
  */
 export const eduAdminRoutes = [
   {
+    path: '/site',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'Site',
+      component: () => import('@/views/edu/site/index'),
+      meta: { title: '考点管理', icon: 'el-icon-s-order' }
+    }]
+  },
+
+  {
+    path: '/session',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'Session',
+      component: () => import('@/views/edu/session/index'),
+      meta: { title: '场次管理', icon: 'el-icon-s-order' }
+    }]
+  },
+
+  {
+    path: '/invigilator',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'Invigilator',
+      component: () => import('@/views/edu/invigilator/index'),
+      meta: { title: '监考教师管理', icon: 'el-icon-s-order' }
+    }]
+  },
+
+  {
+    path: '/arrange',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'Arrange',
+      component: () => import('@/views/edu/arrange/index'),
+      meta: { title: '考试安排管理', icon: 'el-icon-s-order' }
+    }]
+  },
+
+  {
+    path: '/score',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'Score',
+      component: () => import('@/views/edu/score/index'),
+      meta: { title: '成绩导入', icon: 'el-icon-s-order' }
+    }]
+  },
+
+  {
     path: '/status',
     component: Layout,
     children: [{

@@ -160,17 +160,6 @@ export default {
     }
   },
 
-  created() {
-    const pageSize = this.pageSize
-    const params = { pageSize }
-    api.getEnroll(params).then(res => {
-      const { data } = res
-      this.total = data.total
-      this.tableData = data.tableData
-      this.showData = this.tableData[0]
-    })
-  },
-
   methods: {
     /**
      * @method 提交条件查询表单
@@ -237,7 +226,19 @@ export default {
             console.error('error')
             return false
           }
-          this.reload()
+
+          const pageSize = this.pageSize
+          const { type, key } = this.searchForm
+          const params = { pageSize, type, key }
+          console.log(params)
+          api.getEnroll(params).then(res => {
+            const { data } = res
+            this.total = data.total
+            this.tableData = data.tableData
+            this.showData = this.tableData[0]
+            this.dialogVisible = false
+          })
+
           this.$message.success('操作成功')
         })
       }).catch(() => {

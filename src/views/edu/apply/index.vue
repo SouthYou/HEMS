@@ -9,7 +9,16 @@
 
     <!-- 报考信息列表 -->
     <div class="table-container">
-      <el-table :data="showData" border style="width: 100%;">
+      <el-table :data="showData" style="width: 100%;">
+        <el-table-column type="expand">
+          <template slot-scope="props">
+            <el-form label-position="left" inline class="demo-table-expand">
+              <el-form-item label="申请信息描述">
+                <span>{{ props.row.description }}</span>
+              </el-form-item>
+            </el-form>
+          </template>
+        </el-table-column>
         <el-table-column prop="candidateId" label="考生id" width="150px"></el-table-column>
         <el-table-column prop="realName" label="考生姓名" width="150px"></el-table-column>
         <el-table-column prop="description" label="申请信息描述"></el-table-column>
@@ -162,4 +171,5 @@ export default {
   margin-top: 20px;
   text-align: center;
 }
+
 </style>
