@@ -7,6 +7,7 @@ const exam = require('./admin/exam')
 const status = require('./edu/status')
 const enroll = require('./edu/enroll')
 const apply = require('./edu/apply')
+const session = require('./edu/session')
 
 const mocks = [
   ...user,
@@ -15,6 +16,7 @@ const mocks = [
   ...status,
   ...enroll,
   ...apply,
+  ...session,
 ]
 
 // for front mock

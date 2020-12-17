@@ -5,16 +5,16 @@
       <el-button class="btn" type="text" @click="clickEditBtn()">修改</el-button>
     </div>
     <div class="text item">
-      <span class="item-title">开考时间</span>
-      <span>{{ examStart }}</span>
+      <span class="item-title">考试日期</span>
+      <span>{{ examDate }}</span>
     </div>
     <div class="text item">
-      <span class="item-title">停考时间</span>
-      <span>{{ examEnd }}</span>
+      <span class="item-title">考试时间</span>
+      <span>{{ examStart + '-' + examEnd }}</span>
     </div>
-    <div class="text item">
+    <div class="text">
       <span class="item-title">考试时长</span>
-      <span>{{ interval }}</span>
+      <span>{{ interval }}分钟</span>
     </div>
   </el-card>
 </template>
@@ -22,7 +22,7 @@
 <script>
 export default {
   name: 'SessionCard',
-  props: [ 'examName', 'examStart', 'examEnd', 'interval' ],
+  props: [ 'examName', 'examDate', 'examStart', 'examEnd', 'interval' ],
   methods: {
     clickEditBtn() {
       this.$emit("click")
