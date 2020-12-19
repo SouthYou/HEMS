@@ -174,11 +174,7 @@ export default {
       const params = { pageSize, type, key }
       console.log(params)
       api.getEnroll(params).then(res => {
-        const { code, data } = res
-        if (code !== 20000) {
-          console.error('error')
-          return false
-        }
+        const { data } = res
         this.total = data.total
         this.tableData = data.tableData
         this.showData = this.tableData[0]
@@ -220,12 +216,7 @@ export default {
         const data = this.modifyForm
         console.log(data)
         api.updateEnroll(data).then(res => {
-          const { code, data } = res
-          if (code !== 20000) {
-            this.$message.error('操作失败')
-            console.error('error')
-            return false
-          }
+          const { data } = res
 
           const pageSize = this.pageSize
           const { type, key } = this.searchForm
@@ -259,12 +250,7 @@ export default {
         const data = { enrollId }
         console.log(data)
         api.updateStatus(data).then(res => {
-          const { code, data } = res
-          if (code !== 20000) {
-            this.$message.error('操作失败')
-            console.error('error')
-            return false
-          }
+          const { data } = res
           this.reload()
           this.$message.success('操作成功')
         })

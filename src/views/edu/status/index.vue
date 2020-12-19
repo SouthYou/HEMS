@@ -128,11 +128,7 @@ export default {
       const data = { examNo, status }
       console.log(data)
       api.updateStatus(data).then(res => {
-        const { code, data } = res
-        if (code !== 20000) {
-          console.error('error')
-          return false
-        }
+        const { data } = res
         this.$message.success('成功更改状态')
         this.reload()
       })

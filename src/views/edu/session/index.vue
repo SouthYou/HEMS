@@ -1,8 +1,39 @@
 <template>
   <div class="app-container">
+    <el-tabs v-model="activeName">
+      <el-tab-pane label="按考试名称筛选" name="first">
+        <el-form inline :model="tabsForm">
+          <el-form-item label="考试名称">
+            <el-input v-model="tabsForm.examName"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="filterByExamName()">筛选</el-button>
+          </el-form-item>
+        </el-form>
+      </el-tab-pane>
+
+      <el-tab-pane label="按时间段筛选" name="second">
+        <el-form inline :model="tabsForm">
+          <el-form-item label="时间段">
+            <el-date-picker
+              v-model="tabsForm.date"
+              value-format="yyyy-MM-dd"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="pickerOptions">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="filterByDate()">筛选</el-button>
+          </el-form-item>
+        </el-form>
+      </el-tab-pane>
+    </el-tabs>
     <!-- 所有场次信息 -->
     <el-row :gutter="20">
-      <el-col :span="6" v-for="(session, i) in sessionList" :key="i">
+      <el-col :span="6" v-for="(session, i) in showSessionList" :key="i">
         <SessionCard style="margin-bottom: 20px;"
           :examName="session.examName"
           :examDate="session.examDate"
@@ -87,13 +118,20 @@ export default {
 
   data() {
     return {
-      // dialog
-      dialogVisible: false,
+      // el-date-picker
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() < Date.now()
         }
       },
+      // el-tabs
+      activeName: 'first',
+      tabsForm: {
+        examName: '',
+        date: []
+      },
+      // el-dialog
+      dialogVisible: false,
       modifyForm: {
         examNo: '',
         examName: '',
@@ -103,7 +141,8 @@ export default {
         interval: ''
       },
       // 所有场次信息
-      sessionList: []
+      sessionList: [],
+      showSessionList: []
     }
   },
 
@@ -111,10 +150,49 @@ export default {
     api.getSession().then(res => {
       const { data } = res
       this.sessionList = data
+      this.showSessionList = data
     })
   },
 
   methods: {
+    /**
+     * @method 通过考试名称筛选数据
+     */
+    filterByExamName() {
+      const examName = this.tabsForm.examName
+      if (examName === '') {
+        return false
+      }
+      let sessionList = this.sessionList
+      let resultList = []
+      for (let session of sessionList) {
+        if (session.examName.indexOf(examName) >= 0) {
+          resultList.push(session)
+        }
+      }
+      this.showSessionList = resultList
+    },
+
+    /**
+     * @method 通过时间段筛选数据
+     */
+    filterByDate() {
+      const date = this.tabsForm.date
+      if (date === null || date.length === 0) {
+        return false
+      }
+      const startDate = date[0]
+      const endDate = date[1]
+      let sessionList = this.sessionList
+      let resultList = []
+      for (let session of sessionList) {
+        if (session.examDate >= startDate && session.examDate <= endDate) {
+          resultList.push(session)
+        }
+      }
+      this.showSessionList = resultList
+    },
+
     /**
      * @method 修改按钮click事件
      */
@@ -159,11 +237,7 @@ export default {
       interval = interval.substr(0, interval.length - 2)
       const data = { examNo, examStart, examEnd, interval }
       api.updateSession(data).then(res => {
-        const { code, data } = res
-        if (code !== 20000) {
-          this.$message.error('更改失败')
-          return false
-        }
+        const { data } = res
         this.reload()
         this.$message.success('更改成功')
       })

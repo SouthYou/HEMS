@@ -235,11 +235,7 @@ export default {
       if (this.dialogTitle === '添加新闻') {
         const data = { title, content, filenameList }
         api.addNews(data).then(res => {
-          const { code, data } = res
-          if (code !== 20000) {
-            this.$message.error('添加失败')
-            return false
-          }
+          const { data } = res
           this.reload()
           this.$message.success('添加成功')
         })
@@ -248,11 +244,7 @@ export default {
         const data = { newsId, title, content, filenameList }
         console.log(data)
         api.updateNews(data).then(res => {
-          const { code, data } = res
-          if (code !== 20000) {
-            this.$message.error('更改失败')
-            return false
-          }
+          const { data } = res
           this.reload()
           this.$message.success('更改成功')
         })
@@ -275,12 +267,7 @@ export default {
       }).then(() => {
         const params = { newsId }
         api.delNews(params).then(res => {
-          const { code, data } = res
-          if (code !== 20000) {
-            this.$message.error('删除失败')
-            console.error('error')
-            return false
-          }
+          const { data } = res
           this.reload()
           this.$message.success('删除成功')
         })

@@ -263,11 +263,7 @@ export default {
       const data = this.form
       console.log(data)
       api.addExamInfo(data).then(res => {
-        const { code, data } = res
-        if (code !== 20000) {
-          console.error('error')
-          return false
-        }
+        const { data } = res
         this.$message.success('提交成功')
         this.reload()
       })

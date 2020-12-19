@@ -101,11 +101,7 @@ export default {
       const data = { applyId }
       console.log(data)
       api.acceptApply(data).then(res => {
-        const { code, data } = res
-        if (code !== 20000) {
-          console.error('error')
-          return false
-        }
+        const { data } = res
         this.$message.success('操作成功')
         this.reload()
       })
@@ -141,11 +137,7 @@ export default {
       const data = { applyId, feedback }
       console.log(data)
       api.refuseApply(data).then(res => {
-        const { code, data } = res
-        if (code !== 20000) {
-          console.error('error')
-          return false
-        }
+        const { data } = res
         this.$message.success('操作成功')
         this.reload()
       })

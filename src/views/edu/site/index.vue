@@ -183,11 +183,7 @@ export default {
       let formData = new FormData()
       formData.append("file", file)
       api.uploadExcel(formData).then(res => {
-        const { code, data } = res
-        if (code !== 20000) {
-          this.$message.error('导入失败')
-          return false
-        }
+        const { data } = res
         this.$message.success('导入成功')
       })
     },
@@ -221,11 +217,7 @@ export default {
         const siteId = this.siteForm.siteId
         const data = { siteId, building, floor, classroom, capacity }
         api.updateSite(data).then(res => {
-          const { code, data } = res
-          if (code !== 20000) {
-            this.$message.error('编辑失败')
-            return false
-          }
+          const { data } = res
           this.siteFormVisible = false
           this.refreshData()
           this.$message.success('编辑成功')
@@ -233,11 +225,7 @@ export default {
       } else if (this.siteFormTitle === '添加考点') {
         const data = { building, floor, classroom, capacity }
         api.addSite(data).then(res => {
-          const { code, data } = res
-          if (code !== 20000) {
-            this.$message.error('添加失败')
-            return false
-          }
+          const { data } = res
           this.siteFormVisible = false
           this.refreshData()
           this.$message.success('添加成功')
@@ -271,12 +259,7 @@ export default {
       }).then(() => {
         const params = { siteId }
         api.delSite(params).then(res => {
-          const { code, data } = res
-          if (code !== 20000) {
-            this.$message.error('删除失败')
-            console.error('error')
-            return false
-          }
+          const { data } = res
           this.refreshData()
           this.$message.success('删除成功')
         })
