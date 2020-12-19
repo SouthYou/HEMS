@@ -12,9 +12,13 @@
       <span class="item-title">考试时间</span>
       <span>{{ examStart + '-' + examEnd }}</span>
     </div>
-    <div class="text">
+    <div class="text item">
       <span class="item-title">考试时长</span>
       <span>{{ interval }}分钟</span>
+    </div>
+    <div class="text">
+      <span class="item-title">考试状态</span>
+      <span class="green">{{ status }}</span>
     </div>
   </el-card>
 </template>
@@ -22,7 +26,7 @@
 <script>
 export default {
   name: 'SessionCard',
-  props: [ 'examName', 'examDate', 'examStart', 'examEnd', 'interval' ],
+  props: [ 'examName', 'examDate', 'examStart', 'examEnd', 'interval', 'status' ],
   methods: {
     clickEditBtn() {
       this.$emit("click")
@@ -32,6 +36,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.green {
+  color: #67C23A;
+}
+
 .text {
   font-size: 14px;
   color: #777777;

@@ -15,7 +15,8 @@ module.exports = [
                 examDate: '2020-12-25',
                 examStart: '9:00',
                 examEnd: '11:00',
-                interval: '120'
+                interval: '120',
+                status: '分配中'
             },
             {
                 examNo: 'ex1002',
@@ -23,7 +24,8 @@ module.exports = [
                 examDate: '2021-01-12',
                 examStart: '15:00',
                 examEnd: '16:00',
-                interval: '60'
+                interval: '60',
+                status: '分配中'
             },
             {
                 examNo: 'ex1003',
@@ -31,7 +33,8 @@ module.exports = [
                 examDate: '2021-01-13',
                 examStart: '9:00',
                 examEnd: '11:00',
-                interval: '120'
+                interval: '120',
+                status: '分配中'
             },
             {
                 examNo: 'ex1004',
@@ -39,7 +42,8 @@ module.exports = [
                 examDate: '2021-01-13',
                 examStart: '9:00',
                 examEnd: '11:00',
-                interval: '120'
+                interval: '120',
+                status: '分配中'
             },
             {
                 examNo: 'ex1005',
@@ -47,7 +51,8 @@ module.exports = [
                 examDate: '2020-12-25',
                 examStart: '9:00',
                 examEnd: '11:00',
-                interval: '120'
+                interval: '120',
+                status: '分配中'
             }
           ]
         )

@@ -8,6 +8,7 @@ const status = require('./edu/status')
 const enroll = require('./edu/enroll')
 const apply = require('./edu/apply')
 const session = require('./edu/session')
+const site = require('./edu/site')
 
 const mocks = [
   ...user,
@@ -17,6 +18,7 @@ const mocks = [
   ...enroll,
   ...apply,
   ...session,
+  ...site,
 ]
 
 // for front mock

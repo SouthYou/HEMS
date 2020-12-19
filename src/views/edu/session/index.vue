@@ -9,6 +9,7 @@
           :examStart="session.examStart"
           :examEnd="session.examEnd"
           :interval="session.interval"
+          :status="session.status"
           @click="clickEditBtn(session)">
         </SessionCard>
       </el-col>
