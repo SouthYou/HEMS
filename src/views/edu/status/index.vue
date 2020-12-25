@@ -17,9 +17,13 @@
         <el-table-column prop="examStart" label="考试开始时间"></el-table-column>
         <el-table-column prop="examEnd" label="考试结束时间"></el-table-column>
         <el-table-column prop="status" label="状态"></el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="210px">
           <template slot-scope="scope">
             <el-button type="primary" size="small" @click="showDialog(scope.row)">修改</el-button>
+            <el-button type="success" icon="el-icon-refresh" size="small"
+              v-if="scope.row.status==='分配中'"
+              @click="generateArrange(scope.row.examNo)">生成考试安排
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -62,6 +66,7 @@
 
 <script>
 import * as api from '@/api/edu/status'
+import { generateArrange } from '@/api/edu/arrange'
 
 export default {
   inject: ['reload'],
@@ -116,6 +121,23 @@ export default {
     handleClose() {
       this.dialogVisible = false
       this.examNo = ''
+    },
+
+    /**
+     * @method 生成考试安排
+     */
+    generateArrange(examNo) {
+      const loading = this.$loading({
+        lock: true,
+        text: '考试安排生成中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      })
+      generateArrange({ examNo }).then(res => {
+        loading.close()
+        this.$message.success('成功生成考试安排')
+        this.reload()
+      })
     },
 
     /**

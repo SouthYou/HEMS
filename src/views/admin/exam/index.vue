@@ -203,8 +203,7 @@ export default {
      */
     levelChange() {
       const level = this.form.level
-      const params = { level }
-      api.getExamName(params).then(res => {
+      api.getExamName({ level }).then(res => {
         const { data } = res
         this.name_options = data.nameList
         this.default_options = data.detailList

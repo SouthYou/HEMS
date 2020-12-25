@@ -13,6 +13,19 @@ module.exports = [
   },
 
   {
+    url: '/site/examName',
+    type: 'get',
+    response: config => {
+      return {
+        code: 20000,
+        data: Mock.mock(
+          ['A101','A102','A105']
+        )
+      }
+    }
+  },
+
+  {
     url: '/site',
     type: 'get',
     response: config => {

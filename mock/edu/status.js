@@ -19,7 +19,7 @@ module.exports = [
                 enrollEnd: '2020-12-5 18:00',
                 examStart: '2020-12-8 8:00',
                 examEnd: '2020-12-8 9:30',
-                status: '待开考'
+                status: '分配中'
               }, {
                 examNo: 'ex1001',
                 level: '初级',

@@ -50,7 +50,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '主页', icon: 'dashboard' }
+      meta: { title: '主页', icon: 'el-icon-house' }
     }]
   }
 ]
@@ -106,7 +106,7 @@ export const eduAdminRoutes = [
       path: 'index',
       name: 'Site',
       component: () => import('@/views/edu/site/index'),
-      meta: { title: '考点管理', icon: 'el-icon-s-order' }
+      meta: { title: '考点管理', icon: 'el-icon-location-information' }
     }]
   },
 
@@ -117,7 +117,7 @@ export const eduAdminRoutes = [
       path: 'index',
       name: 'Session',
       component: () => import('@/views/edu/session/index'),
-      meta: { title: '场次管理', icon: 'el-icon-s-order' }
+      meta: { title: '场次管理', icon: 'el-icon-alarm-clock' }
     }]
   },
 
@@ -128,7 +128,7 @@ export const eduAdminRoutes = [
       path: 'index',
       name: 'Invigilator',
       component: () => import('@/views/edu/invigilator/index'),
-      meta: { title: '监考教师管理', icon: 'el-icon-s-order' }
+      meta: { title: '监考教师管理', icon: 'el-icon-user' }
     }]
   },
 
@@ -139,7 +139,7 @@ export const eduAdminRoutes = [
       path: 'index',
       name: 'Arrange',
       component: () => import('@/views/edu/arrange/index'),
-      meta: { title: '考试安排管理', icon: 'el-icon-s-order' }
+      meta: { title: '考试安排管理', icon: 'el-icon-date' }
     }]
   },
 
@@ -150,7 +150,7 @@ export const eduAdminRoutes = [
       path: 'index',
       name: 'Score',
       component: () => import('@/views/edu/score/index'),
-      meta: { title: '成绩导入', icon: 'el-icon-s-order' }
+      meta: { title: '成绩导入', icon: 'el-icon-upload2' }
     }]
   },
 
@@ -172,7 +172,7 @@ export const eduAdminRoutes = [
       path: 'index',
       name: 'Enroll',
       component: () => import('@/views/edu/enroll/index'),
-      meta: { title: '报考信息管理', icon: 'el-icon-s-order' }
+      meta: { title: '报考信息管理', icon: 'el-icon-document' }
     }]
   },
 
@@ -183,7 +183,7 @@ export const eduAdminRoutes = [
       path: 'index',
       name: 'Apply',
       component: () => import('@/views/edu/apply/index'),
-      meta: { title: '修改申请审核', icon: 'el-icon-s-check' }
+      meta: { title: '修改申请审核', icon: 'el-icon-coordinate' }
     }]
   }
 ]

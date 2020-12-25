@@ -8,6 +8,14 @@ export function uploadExcel(data) {
   })
 }
 
+export function getSiteByExamName(params) {
+  return request({
+    url: '/site/examName',
+    method: 'get',
+    params
+  })
+}
+
 export function getSite(params) {
   return request({
     url: '/site',

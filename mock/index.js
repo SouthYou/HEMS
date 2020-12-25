@@ -2,8 +2,10 @@ const Mock = require('mockjs')
 const { param2Obj } = require('./utils')
 
 const user = require('./common/user')
+
 const news = require('./admin/news')
 const exam = require('./admin/exam')
+
 const status = require('./edu/status')
 const enroll = require('./edu/enroll')
 const apply = require('./edu/apply')
@@ -11,6 +13,7 @@ const session = require('./edu/session')
 const site = require('./edu/site')
 const score = require('./edu/score')
 const invigilator = require('./edu/invigilator')
+const arrange = require('./edu/arrange')
 
 const mocks = [
   ...user,
@@ -23,6 +26,7 @@ const mocks = [
   ...site,
   ...score,
   ...invigilator,
+  ...arrange
 ]
 
 // for front mock

@@ -50,7 +50,7 @@
     <el-dialog :title="siteFormTitle" :visible.sync="siteFormVisible" width="420px" :before-close="handleCancel">
       <el-form :model="siteForm" label-width="60px" ref="siteForm">
         <el-form-item label="教学楼">
-          <el-select v-model="siteForm.building" style="width:200px" placeholder="选择教学楼">
+          <el-select v-model="siteForm.building" style="width:200px" placeholder="选择教学楼" :disabled="disabled">
             <el-option label="A楼" value="A"></el-option>
             <el-option label="B楼" value="B"></el-option>
             <el-option label="C楼" value="C"></el-option>
@@ -60,7 +60,7 @@
         </el-form-item>
 
         <el-form-item label="楼层">
-          <el-select v-model="siteForm.floor" style="width:200px" placeholder="选择楼层">
+          <el-select v-model="siteForm.floor" style="width:200px" placeholder="选择楼层" :disabled="disabled">
             <el-option label="1层" value="1"></el-option>
             <el-option label="2层" value="2"></el-option>
             <el-option label="3层" value="3"></el-option>
@@ -70,7 +70,7 @@
         </el-form-item>
 
         <el-form-item label="教室">
-          <el-input v-model="siteForm.classroom" style="width:200px"></el-input>
+          <el-input v-model="siteForm.classroom" style="width:200px" :disabled="disabled"></el-input>
           <span class="red rt">(例：A101)</span>
         </el-form-item>
 
@@ -105,6 +105,7 @@ export default {
         floor: '',
       },
       /* 添加/编辑考点表单 */
+      disabled: false,
       siteFormVisible: false,
       siteFormTitle: '',
       siteForm: {
@@ -133,6 +134,9 @@ export default {
       const params = { building, floor }
       api.getSite(params).then(res => {
         const { data } = res
+        if (data.length === 0) {
+          this.$message.info('没有查询到数据')
+        }
         this.tableData = data
       })
     },
@@ -157,6 +161,7 @@ export default {
      * @method 点击添加考点按钮，弹出添加dialog
      */
     clickAddBtn() {
+      this.disabled = false
       this.siteFormTitle = '添加考点'
       this.siteFormVisible = true
     },
@@ -192,6 +197,7 @@ export default {
      * @method 点击编辑按钮，弹出编辑dialog
      */
     clickEditBtn(row) {
+      this.disabled = true
       this.siteFormTitle = '编辑考点'
       this.siteForm.siteId = row.siteId
       this.siteForm.building = row.building
@@ -233,6 +239,11 @@ export default {
       } else {
         console.error('error')
       }
+      this.siteForm.siteId = ''
+      this.siteForm.building = ''
+      this.siteForm.floor = ''
+      this.siteForm.classroom = ''
+      this.siteForm.capacity = ''
     },
 
     /**
