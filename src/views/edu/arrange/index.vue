@@ -184,8 +184,9 @@ export default {
     conditionQuery() {
       const type = this.searchForm.type
       if (type === 'site') {
+        const examName = this.searchForm.examName
         const site = this.searchForm.site
-        api.getArrangeBySite({ site }).then(res => {
+        api.getArrangeBySite({ examName, site }).then(res => {
           const { data } = res
           this.total = data.total
           this.invigilatorList = data.invigilatorList

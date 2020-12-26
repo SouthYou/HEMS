@@ -134,9 +134,10 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)'
       })
       generateArrange({ examNo }).then(res => {
-        loading.close()
         this.$message.success('成功生成考试安排')
         this.reload()
+      }).finally(_ => {
+        loading.close()
       })
     },
 
